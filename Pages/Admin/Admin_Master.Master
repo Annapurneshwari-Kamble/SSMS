@@ -1,0 +1,435 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin_Master.master.cs" Inherits="SSMS.Pages.Admin.Admin_Master" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SEVA_MEMBER DETAILS</title>
+
+    <!-- Meta -->
+    <meta name="description" content="Marketplace for Bootstrap Admin Dashboards">
+    <meta name="author" content="Bootstrap Gallery">
+    <link rel="canonical" href="https://www.bootstrap.gallery/">
+    <meta property="og:url" content="https://www.bootstrap.gallery/">
+    <meta property="og:title" content="Admin Templates - Dashboard Templates | Bootstrap Gallery">
+    <meta property="og:description" content="Marketplace for Bootstrap Admin Dashboards">
+    <meta property="og:type" content="Website">
+    <meta property="og:site_name" content="Bootstrap Gallery">
+
+    <link rel="shortcut icon" href="../../assets/images/smsf5.jpg">
+    <link rel="stylesheet" href="../../assets/fonts/remix/remixicon.css">
+    <link rel="stylesheet" href="../../assets/css/main.min.css">
+    <!-- Scrollbar CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/overlay-scroll/OverlayScrollbars.min.css">
+
+    <!-- Font Awesome 7 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .sidebar-menu li.active > a {
+            font-weight: 600;
+            color: #4a6cf7;
+        }
+
+        .treeview-menu li.active > a {
+            font-weight: 600;
+            color: #4a6cf7;
+            background-color: rgba(74, 108, 247, 0.1);
+        }
+
+        .treeview.active > a {
+            font-weight: 600;
+            color: #4a6cf7;
+        }
+
+        .treeview-menu {
+            padding-left: 1.5rem;
+        }
+
+            .treeview-menu.collapse {
+                display: none;
+            }
+
+                .treeview-menu.collapse.show {
+                    display: block;
+                }
+
+        .main-container {
+            margin-top: 20px;
+            padding-bottom: 75px;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 991.98px) {
+            .sidebar-wrapper {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                height: calc(100vh - 70px);
+                z-index: 1000;
+                background: #fff;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .content-wrapper.overlay::before {
+                content: '';
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+        }
+
+        /* Full Footer Bar */
+        /* Fixed Footer */
+        .footer-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 55px;
+            background: #ffffff;
+            border-top: 2px solid #e5e5e5;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 14px;
+            color: #6c757d;
+            z-index: 99999;
+            box-sizing: border-box;
+        }
+
+            .footer-bar strong {
+                color: #333;
+            }
+
+            .footer-bar a {
+                font-weight: bold;
+                color: #808080;
+                text-decoration: none;
+            }
+
+                .footer-bar a span {
+                    color: orange;
+                }
+
+        /* Reserve space for fixed footer */
+        .content-wrapper {
+            padding-bottom: 75px;
+            box-sizing: border-box;
+        }
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- Page wrapper starts -->
+        <div class="page-wrapper">
+
+            <!-- App header starts -->
+            <header class="app-header d-flex align-items-center fixed-top bg-white shadow-sm">
+                <!-- App brand starts -->
+                <%--<div class="app-brand ms-3">
+                    <a href="index.html" class="d-lg-block d-none text-decoration-none">
+                        <span class="fw-bold fs-4 text-primary">Siddarooda</span>
+                    </a>
+                    <a href="index.html" class="d-lg-none d-md-block text-decoration-none">
+                        <span class="fw-bold fs-4 text-primary">Siddarooda</span>
+                    </a>
+                </div>--%>
+                <!-- App brand ends -->
+
+                <!-- Mobile menu toggle button -->
+                <button class="btn btn-sm btn-primary ms-auto d-lg-none me-2" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-expanded="false">
+                    <i class="ri-menu-line"></i>
+                </button>
+
+                <!-- Header actions starts -->
+                <div class="header-actions">
+                    <div class="d-flex gap-2">
+                        <!-- Header user settings -->
+                        <div class="dropdown ms-2">
+                            <a id="userSettings" class="dropdown-toggle d-flex align-items-center" href="#!" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="avatar-box">SM<span class="status busy"></span></div>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow-lg">
+                                <li>
+                                    <div class="px-3 py-2">
+                                        <span class="small">Admin</span>
+                                        <h6 class="m-0">Sidharoodmath</h6>
+                                    </div>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <div class="mx-3 my-2 d-grid">
+                                        <asp:LinkButton ID="btnLogout" runat="server" CssClass="btn btn-danger" OnClick="btnLogout_Click" CausesValidation="false">Logout</asp:LinkButton>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Header user settings ends -->
+                    </div>
+                </div>
+                <!-- App header actions ends -->
+            </header>
+            <!-- App header ends -->
+
+            <!-- Main container starts -->
+            <div class="main-container">
+                <!-- Sidebar wrapper starts -->
+                <nav id="sidebar" class="sidebar-wrapper collapse d-lg-block">
+                    <!-- Sidebar profile starts -->
+                    <div class="sidebar-profile">
+                        <img src="../../assets/images/admin.jpg" class="img-shadow img-3x me-3 rounded-5" alt="Siddaroodmath Admin Templates">
+                        <div class="m-0">
+                            <h5 class="mb-1 profile-name text-nowrap text-truncate">Siddharoodmath</h5>
+                            <p class="m-0 small profile-name text-nowrap text-truncate">Dept Admin</p>
+                        </div>
+                    </div>
+                    <!-- Sidebar profile ends -->
+
+                    <!-- Sidebar menu starts -->
+                    <div class="sidebarMenuScroll">
+                        <ul class="sidebar-menu">
+                            <li id="homeMenuItem">
+                                <a href="Home.aspx">
+                                    <i class="fa-solid fa-house"></i>
+                                    <span class="menu-text">HOME</span>
+                                </a>
+                            </li>
+                            <li id="dashboardMenuItem">
+                                <a href="dashboard.aspx">
+                                    <i class="fa-solid fa-gauge"></i>
+                                    <span class="menu-text">Dashboard</span>
+                                </a>
+                            </li>
+
+                            <li class="treeview" id="mastersMenuItem">
+                                <a href="#!" data-bs-toggle="collapse" data-bs-target="#mastersSubmenu" aria-expanded="false">
+                                    <i class="fa-solid fa-database"></i>
+                                    <span class="menu-text">Masters</span>
+
+                                </a>
+                                <ul id="mastersSubmenu" class="treeview-menu collapse">
+                                    <li id="abhishekListMenuItem">
+                                        <a href="Nirantara_Abhishek_list.aspx">
+                                            <i class="fa-solid fa-list"></i>Nirantara Abhishek List
+                                        </a>
+                                    </li>
+                                    <li id="annaprasadListMenuItem">
+                                        <a href="Nirantara_Annaprasad_list.aspx">
+                                            <i class="fa-solid fa-clipboard-list"></i>Nirantara Annaprasad List
+                                        </a>
+                                    </li>
+                                    <li id="othersevasListMenuItem">
+                                        <a href="Other_Sevas_List.aspx">
+                                            <i class="fa-solid fa-clipboard-list"></i>Other Sevas List
+                                        </a>
+                                    </li>
+                                    <li id="PaymentListMenuItem">
+                                        <a href="PaymentList.aspx">
+                                            <i class="fa-solid fa-clipboard-list"></i>Payment List
+                                        </a>
+                                    </li>
+                                    <li id="600PaidListMenuItem">
+                                        <a href="600PaidList.aspx">
+                                            <i class="fa-solid fa-clipboard-list"></i>600 Paid List
+                                        </a>
+                                    </li>
+                                    <li id="allListMenuItem">
+                                        <a href="AllList.aspx">
+                                            <i class="fa-solid fa-clipboard-list"></i>All List
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li id="sevaMenuItem">
+                                <a href="Add_Seva_Member_details.aspx">
+                                    <i class="fa-solid fa-user-plus"></i>
+                                    <span class="menu-text">Seva/Member Details</span>
+                                </a>
+                            </li>
+                            <%--<li id="importexcelMenuItem">
+                                <a href="ImportExcel.aspx">
+                                    <i class="fa-solid fa-file-excel"></i>
+                                    <span class="menu-text">ImportExcel</span>
+                                </a>
+                            </li>--%>
+                            <li id="ExcelDataPreviewMenuItem">
+                                <a href="ExcelDataPreview.aspx">
+                                    <i class="fa-solid fa-file-excel"></i>
+                                    <span class="menu-text">ExcelDataPreview</span>
+                                </a>
+                            </li>
+                            <%--<li id="letterMenuItem">
+                                <a href="Letter.aspx">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <span class="menu-text">Letter</span>
+                                </a>
+                            </li>--%>
+                            <%--<li id="smsMenuItem">
+                                <a href="#">
+                                    <i class="fa-solid fa-comment-dots"></i>
+                                    <span class="menu-text">SMS</span>
+                                </a>
+                            </li>--%>
+                            <li class="treeview" id="reportsMenuItem">
+                                <a href="Report.aspx">
+                                    <i class="fa-solid fa-chart-pie"></i>
+                                    <span class="menu-text">Reports</span>
+
+                                </a>
+                            </li>
+                           <%-- <li id="ConverttokannadaMenuItem">
+                                <a href="ConvertKannadaData.aspx">
+                                    <i class="fa-solid fa-gauge"></i>
+                                    <span class="menu-text">Convert Kannada Data</span>
+                                </a>
+                            </li>--%>
+                            <li class="treeview" id="UsermasterMenuItem" runat="server">
+                                <a href="#!" data-bs-toggle="collapse" data-bs-target="#mastersSubmenu" aria-expanded="false">
+                                    <i class="fa-solid fa-database"></i>
+                                    <span class="menu-text">User Management</span>
+
+                                </a>
+                                <ul id="UsermasterSubmenu" class="treeview-menu collapse">
+                                    <li id="UsermasterformMenuItem">
+                                        <a href="Usermaster.aspx">
+                                            <i class="fa-solid fa-user-plus"></i> Usermaster
+                                        </a>
+                                    </li>
+                                    <li id="UsermasterlistMenuItem">
+                                        <a href="UsermasterList.aspx">
+                                            <i class="fa-solid fa-list"></i> Usermaster List
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Sidebar menu ends -->
+                </nav>
+                <!-- Sidebar wrapper ends -->
+
+                <!-- Content wrapper starts -->
+                <div class="content-wrapper">
+                    <div class="container-fluid">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+                    </div>
+                </div>
+                <!-- Content wrapper ends -->
+            </div>
+            <!-- Main container ends -->
+        </div>
+        <!-- Page wrapper ends -->
+        <!-- Footer -->
+        <!-- Full Footer Bar -->
+        <footer class="footer-bar">
+            <div>
+                Powered by 
+        <a href="http://aargees.com/" target="_blank">Aar<span>Gees</span> Business Solutions
+        </a>
+            </div>
+        </footer>
+
+    </form>
+
+    <!-- Required JS -->
+    <script src="../../assets/js/jquery.min.js"></script>
+    <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/js/moment.min.js"></script>
+
+    <!-- Overlay Scroll JS -->
+    <script src="../../assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
+    <script src="../../assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
+
+    <!-- Apex Charts -->
+    <script src="../../assets/vendor/apex/apexcharts.min.js"></script>
+    <script src="../../assets/vendor/apex/custom/home/patients.js"></script>
+    <script src="../../assets/vendor/apex/custom/home/treatment.js"></script>
+    <script src="../../assets/vendor/apex/custom/home/available-beds.js"></script>
+    <script src="../../assets/vendor/apex/custom/home/earnings.js"></script>
+    <script src="../../assets/vendor/apex/custom/home/gender-age.js"></script>
+    <script src="../../assets/vendor/apex/custom/home/claims.js"></script>
+
+    <!-- Custom JS -->
+    <script src="../../assets/js/custom.js"></script>
+
+    <!-- Active menu detection -->
+    <script>
+        $(document).ready(function () {
+            // Function to highlight active menu item
+            function setActiveMenu() {
+                // Get current page URL
+                var currentUrl = window.location.pathname;
+                var pageName = currentUrl.split("/").pop();
+
+                // Remove active class from all menu items
+                $('.sidebar-menu li').removeClass('active');
+                $('.treeview-menu li').removeClass('active');
+
+                // Check each menu item
+                $('.sidebar-menu a').each(function () {
+                    var menuUrl = $(this).attr('href');
+
+                    // Check if the URL matches
+                    if (menuUrl === pageName || (menuUrl !== '#' && currentUrl.includes(menuUrl))) {
+                        $(this).parent().addClass('active');
+
+                        // If this is a submenu item, also activate the parent
+                        var parentMenu = $(this).closest('.treeview-menu');
+                        if (parentMenu.length) {
+                            parentMenu.addClass('show');
+                            parentMenu.closest('.treeview').addClass('active');
+                            parentMenu.prev('a').attr('aria-expanded', 'true');
+                        }
+
+                        return false; // Break out of the loop once found
+                    }
+                });
+
+                // Special case for home page
+                if (pageName === '' || pageName === 'Default.aspx' || pageName === 'Home.aspx') {
+                    $('#homeMenuItem').addClass('active');
+                }
+            }
+
+            // Initialize dropdowns
+            $('.dropdown-toggle').dropdown();
+
+            // Set active menu on page load
+            setActiveMenu();
+
+            // Handle sidebar collapse on mobile
+            $('#sidebar').on('show.bs.collapse', function () {
+                $('.content-wrapper').addClass('overlay');
+            }).on('hide.bs.collapse', function () {
+                $('.content-wrapper').removeClass('overlay');
+            });
+
+            // Automatically expand parent menu if a child is active
+            if ($('.treeview-menu li.active').length) {
+                var parentMenu = $('.treeview-menu li.active').closest('.treeview-menu');
+                parentMenu.addClass('show');
+                parentMenu.closest('.treeview').addClass('active');
+                parentMenu.prev('a').attr('aria-expanded', 'true');
+            }
+        });
+
+        // Ensure logout link triggers postback properly
+        $(document).on("click", "#<%= btnLogout.ClientID %>", function (e) {
+            __doPostBack('<%= btnLogout.UniqueID %>', '');
+        });
+
+
+    </script>
+</body>
+</html>
